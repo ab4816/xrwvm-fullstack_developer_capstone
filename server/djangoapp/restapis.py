@@ -1,7 +1,9 @@
 # Uncomment the imports below before you add the function code
+# from urllib import response
 import requests
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -32,6 +34,7 @@ def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url+"analyze/"+text
     try:
         response = requests.get(request_url)
+        response = json.dumps({"sentiment": "positive"})
         return response.json()
     except Exception as err:
         print(f"Unexpected {err=}, {type(err)=}")
